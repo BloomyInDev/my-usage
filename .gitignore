@@ -1,0 +1,10 @@
+/bin/*
+!/bin/.gitkeep
+/tmp/
+
+# Written by `make coverage`.
+/cover.out
+
+# Credentials: each file holds a refresh token or an API key.
+/accounts/
+/config.yaml
