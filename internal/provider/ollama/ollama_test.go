@@ -11,8 +11,8 @@ import (
 	"github.com/BloomyInDev/my-usage/internal/provider"
 )
 
-// The fixtures are reconstructed from the field names in BEGIN.md section 6.2,
-// not captured from a live account. Replace them with real responses.
+// The shapes match a live monthly-only account (field names and nesting); the
+// values and the older session/weekly fixture are reconstructed.
 func serve(t *testing.T, status int, file string) *Provider {
 	t.Helper()
 	body, err := os.ReadFile("testdata/" + file)
@@ -28,7 +28,7 @@ func serve(t *testing.T, status int, file string) *Provider {
 			w.WriteHeader(status)
 			w.Write(body)
 		case "/api/me":
-			w.Write([]byte(`{"plan":"pro"}`))
+			w.Write([]byte(`{"Plan":"pro","Email":"redacted"}`))
 		}
 	}))
 	t.Cleanup(srv.Close)

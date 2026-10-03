@@ -1,1 +1,8 @@
-{"limits":{"session":null,"weekly":null,"monthly":{"usage":0.37}}}
+{
+  "activity": {
+    "cost": "$0.0000",
+    "models": [],
+    "period": {"type": "billing_month", "starting_at": "2026-10-01T00:00:00Z", "ending_at": "2026-11-01T00:00:00.000000Z"}
+  },
+  "limits": {"monthly": {"models": [], "usage": 0.37}}
+}
