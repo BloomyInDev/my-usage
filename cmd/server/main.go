@@ -15,6 +15,9 @@ import (
 	"github.com/BloomyInDev/my-usage/internal/logging"
 	"github.com/BloomyInDev/my-usage/internal/metrics"
 	"github.com/BloomyInDev/my-usage/internal/provider"
+	"github.com/BloomyInDev/my-usage/internal/provider/anthropic"
+	"github.com/BloomyInDev/my-usage/internal/provider/codex"
+	"github.com/BloomyInDev/my-usage/internal/provider/ollama"
 	"github.com/BloomyInDev/my-usage/internal/server"
 	"github.com/BloomyInDev/my-usage/internal/watcher"
 	"github.com/BloomyInDev/my-usage/internal/worker"
@@ -40,7 +43,7 @@ func run() error {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
-	registry := provider.NewRegistry()
+	registry := provider.NewRegistry(anthropic.New(), codex.New(), ollama.New())
 	store := metrics.NewStore()
 	reg := prometheus.NewRegistry()
 	reg.MustRegister(metrics.NewCollector(store, 2*cfg.PollInterval, time.Now))
