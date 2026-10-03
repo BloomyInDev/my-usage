@@ -1,4 +1,4 @@
-module forge.red.bloomyindev.me/bastien/my-usage
+module github.com/BloomyInDev/my-usage
 
 go 1.27.1
 

@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/accounts"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/metrics"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/provider"
+	"github.com/BloomyInDev/my-usage/internal/accounts"
+	"github.com/BloomyInDev/my-usage/internal/metrics"
+	"github.com/BloomyInDev/my-usage/internal/provider"
 )
 
 type Config struct {

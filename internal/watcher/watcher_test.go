@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/accounts"
+	"github.com/BloomyInDev/my-usage/internal/accounts"
 )
 
 func signalled(ch <-chan struct{}, within time.Duration) bool {

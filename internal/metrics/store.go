@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/provider"
+	"github.com/BloomyInDev/my-usage/internal/provider"
 )
 
 // Result is the outcome of the latest poll of one account.

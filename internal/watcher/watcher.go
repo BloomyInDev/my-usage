@@ -9,7 +9,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/accounts"
+	"github.com/BloomyInDev/my-usage/internal/accounts"
 )
 
 // Watch watches the directory itself, not its files: an atomic write replaces

@@ -8,7 +8,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/provider"
+	"github.com/BloomyInDev/my-usage/internal/provider"
 )
 
 var (

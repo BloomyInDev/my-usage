@@ -11,14 +11,14 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/accounts"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/config"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/logging"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/metrics"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/provider"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/server"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/watcher"
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/worker"
+	"github.com/BloomyInDev/my-usage/internal/accounts"
+	"github.com/BloomyInDev/my-usage/internal/config"
+	"github.com/BloomyInDev/my-usage/internal/logging"
+	"github.com/BloomyInDev/my-usage/internal/metrics"
+	"github.com/BloomyInDev/my-usage/internal/provider"
+	"github.com/BloomyInDev/my-usage/internal/server"
+	"github.com/BloomyInDev/my-usage/internal/watcher"
+	"github.com/BloomyInDev/my-usage/internal/worker"
 )
 
 func main() {

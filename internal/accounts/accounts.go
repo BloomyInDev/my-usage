@@ -11,7 +11,7 @@ import (
 
 	"go.yaml.in/yaml/v3"
 
-	"forge.red.bloomyindev.me/bastien/my-usage/internal/provider"
+	"github.com/BloomyInDev/my-usage/internal/provider"
 )
 
 type Account struct {
