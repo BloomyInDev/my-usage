@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"os"
 	"os/signal"
@@ -29,12 +28,7 @@ func main() {
 }
 
 func run() error {
-	configPath := flag.String("config", "config.yaml", "path to the YAML config file")
-	flag.Parse()
-	explicit := false
-	flag.Visit(func(f *flag.Flag) { explicit = explicit || f.Name == "config" })
-
-	cfg, err := config.Load(*configPath, explicit)
+	cfg, err := config.Load(os.Getenv)
 	if err != nil {
 		return err
 	}

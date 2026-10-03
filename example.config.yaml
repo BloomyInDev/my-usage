@@ -1,6 +1,0 @@
-accounts_dir: accounts
-listen: ":9090"
-poll_interval: 5m
-rescan_interval: 1m
-log_format: text
-log_level: info

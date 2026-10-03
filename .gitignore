@@ -7,4 +7,3 @@
 
 # Credentials: each file holds a refresh token or an API key.
 /accounts/
-/config.yaml
