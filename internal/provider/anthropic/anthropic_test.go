@@ -77,6 +77,10 @@ func TestRefresh(t *testing.T) {
 			http.Error(w, `{"error":"invalid_grant"}`, http.StatusBadRequest)
 			return
 		}
+		if body["refresh_token"] == "no-expiry" {
+			w.Write([]byte(`{"access_token":"a3","refresh_token":"r3"}`))
+			return
+		}
 		if body["grant_type"] != "refresh_token" || body["client_id"] != clientID {
 			t.Errorf("request %v", body)
 		}
@@ -91,6 +95,14 @@ func TestRefresh(t *testing.T) {
 	}
 	c := got.(Credentials)
 	if c.AccessToken != "a2" || c.RefreshToken != "r2" || c.SubscriptionType != "pro" || !c.ExpiresAt.Equal(now.Add(time.Hour)) {
+		t.Fatalf("credentials %+v", c)
+	}
+
+	got, err = p.Refresh(context.Background(), Credentials{RefreshToken: "no-expiry", ExpiresAt: now})
+	if err != nil {
+		t.Fatalf("a missing expires_in must keep the new tokens, got %v", err)
+	}
+	if c := got.(Credentials); c.AccessToken != "a3" || c.RefreshToken != "r3" || !c.ExpiresAt.IsZero() {
 		t.Fatalf("credentials %+v", c)
 	}
 

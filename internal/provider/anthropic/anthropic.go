@@ -88,15 +88,20 @@ func (p *Provider) Refresh(ctx context.Context, c provider.Credentials) (provide
 		}
 		return nil, err
 	}
-	if resp.AccessToken == "" || resp.ExpiresIn <= 0 {
-		return nil, errors.New("refresh response lacks access_token or expires_in")
+	if resp.AccessToken == "" {
+		return nil, errors.New("refresh response has no access_token")
 	}
 	fresh := old
 	fresh.AccessToken = resp.AccessToken
 	if resp.RefreshToken != "" {
 		fresh.RefreshToken = resp.RefreshToken
 	}
-	fresh.ExpiresAt = p.now().Add(time.Duration(resp.ExpiresIn) * time.Second).UTC()
+	// The old refresh token is spent by now, so the new pair must be kept even
+	// without an expiry. A zero expiry refreshes again on the next poll.
+	fresh.ExpiresAt = time.Time{}
+	if resp.ExpiresIn > 0 {
+		fresh.ExpiresAt = p.now().Add(time.Duration(resp.ExpiresIn) * time.Second).UTC()
+	}
 	return fresh, nil
 }
 
