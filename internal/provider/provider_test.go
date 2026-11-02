@@ -12,7 +12,7 @@ func TestUsageValidate(t *testing.T) {
 		{"one window", Usage{Quotas: []Quota{q("5h", "", 0.4)}}, false},
 		{"bounds", Usage{Quotas: []Quota{q("5h", "", 0), q("weekly", "", 1)}}, false},
 		{"no window", Usage{}, true},
-		{"ratio above one", Usage{Quotas: []Quota{q("5h", "", 1.01)}}, true},
+		{"ratio above one", Usage{Quotas: []Quota{q("5h", "", 1.01)}}, false},
 		{"negative ratio", Usage{Quotas: []Quota{q("5h", "", -0.1)}}, true},
 		{"empty window", Usage{Quotas: []Quota{q("", "", 0.1)}}, true},
 		{"same window, other scope", Usage{Quotas: []Quota{q("5h", "a", 0.1), q("5h", "b", 0.1)}}, false},

@@ -74,8 +74,10 @@ func (u Usage) Validate() error {
 		if q.Window == "" {
 			return errors.New("quota with an empty window")
 		}
-		if math.IsNaN(q.Ratio) || q.Ratio < 0 || q.Ratio > 1 {
-			return fmt.Errorf("quota %q has ratio %v outside 0..1", q.Window, q.Ratio)
+		// No upper bound: a provider may report usage past the limit, and
+		// that is the moment the value matters most.
+		if math.IsNaN(q.Ratio) || q.Ratio < 0 {
+			return fmt.Errorf("quota %q has invalid ratio %v", q.Window, q.Ratio)
 		}
 		k := [2]string{q.Window, q.Scope}
 		if seen[k] {

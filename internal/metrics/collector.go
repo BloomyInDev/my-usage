@@ -16,7 +16,7 @@ var (
 	acctLabels  = []string{"provider", "account"}
 
 	descRatio = prometheus.NewDesc("llm_quota_utilization_ratio",
-		"Share of the quota window already used, 0 to 1.", quotaLabels, nil)
+		"Share of the quota window already used; 1 is the limit, a provider may report more.", quotaLabels, nil)
 	descReset = prometheus.NewDesc("llm_quota_reset_timestamp_seconds",
 		"Unix time the quota window resets, when the provider reports it.", quotaLabels, nil)
 	descUsed = prometheus.NewDesc("llm_quota_used",

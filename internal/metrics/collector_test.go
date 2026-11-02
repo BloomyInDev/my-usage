@@ -42,7 +42,7 @@ func TestCollectOptionalValuesOnlyWhenPresent(t *testing.T) {
 	s.Set("a.yaml", okResult())
 
 	collect(t, s, t0, `
-# HELP llm_quota_utilization_ratio Share of the quota window already used, 0 to 1.
+# HELP llm_quota_utilization_ratio Share of the quota window already used; 1 is the limit, a provider may report more.
 # TYPE llm_quota_utilization_ratio gauge
 llm_quota_utilization_ratio{account="main",provider="ollama",scope="",window="5h"} 0.25
 llm_quota_utilization_ratio{account="main",provider="ollama",scope="all",window="weekly"} 0.5
