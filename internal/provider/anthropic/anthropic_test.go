@@ -13,8 +13,8 @@ import (
 	"github.com/BloomyInDev/my-usage/internal/provider"
 )
 
-// usage_pro.json is reconstructed from what is known of /api/oauth/usage, not
-// captured from a live account. Replace it with a real response.
+// usage_pro.json is a live /api/oauth/usage response of a Pro account,
+// captured 2026-11-02. It holds no account identifier.
 func TestParseProFixture(t *testing.T) {
 	raw, err := os.ReadFile("testdata/usage_pro.json")
 	if err != nil {
@@ -28,10 +28,11 @@ func TestParseProFixture(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(u.Quotas) != 2 || u.Quotas[0].Window != "5h" || u.Quotas[0].Ratio != 0.37 || u.Quotas[1].Window != "weekly" {
+	if len(u.Quotas) != 2 || u.Quotas[0].Window != "5h" || u.Quotas[0].Ratio != 0.09 ||
+		u.Quotas[1].Window != "weekly" || u.Quotas[1].Ratio != 0.46 {
 		t.Fatalf("quotas %+v", u.Quotas)
 	}
-	if u.Quotas[0].ResetAt == nil || u.Quotas[0].ResetAt.Year() != 2026 {
+	if want := time.Date(2026, 11, 2, 18, 40, 0, 770076000, time.UTC); u.Quotas[0].ResetAt == nil || !u.Quotas[0].ResetAt.Equal(want) {
 		t.Fatalf("reset %v", u.Quotas[0].ResetAt)
 	}
 	if err := u.Validate(); err != nil {
